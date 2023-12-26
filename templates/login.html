@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='main.css') }}">
+</head>
+<body>
+    <header>
+        <h1>Вход в аккаунт</h1>
+    </header>
+
+    <form id="loginForm">
+        <label for="username">Имя пользователя:</label>
+        <input type="text" id="username" name="username" required>
+
+        <label for="password">Пароль:</label>
+        <input type="password" id="password" name="password" required>
+
+        <button type="submit">Войти</button>
+    </form>
+
+    <p>У вас нет учетной записи? <a href="{{ url_for('register') }}">Зарегистрироваться</a></p>
+
+    <footer>
+        &copy; Клопенкова Виктория, ФБИ-11, 3 курс, 2023
+    </footer>
+</body>
+</html>

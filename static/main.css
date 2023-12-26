@@ -21,3 +21,12 @@ body {
     border: none;
     cursor: pointer;
   }
+
+  footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    background-color: #ffffff;
+    text-align: center;
+    padding: 10px;
+}
