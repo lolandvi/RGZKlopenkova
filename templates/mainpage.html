@@ -78,6 +78,13 @@
         const ratingElement = initiativeItem.querySelector('.initiativeRating');
         if (ratingElement) {
             ratingElement.textContent = `Текущая оценка: ${newRating}`;
+            if (newRating < 10) {
+            // Если текущая оценка менее 10, то удаляем инициативу
+            const theme = initiativeItem.querySelector('h3').textContent;
+            removeInitiativeByTheme(theme);
+            clearInitiativesList();
+            loadInitiatives();
+          }
         }
     }
 
@@ -90,8 +97,8 @@
         <p>${initiative.text}</p>
         <p>Дата создания: ${initiative.creationDate}</p>
         <p class="initiativeRating">Текущая оценка: ${initiative.rating}</p>
-        <button class="increaseRatingBtn">+</button>
-        <button class="decreaseRatingBtn">-</button>
+        <button class="increaseRatingBtn">За</button>
+        <button class="decreaseRatingBtn">Против</button>
       `;
       initiativesList.appendChild(initiativeItem);
     }

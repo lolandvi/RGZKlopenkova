@@ -42,6 +42,10 @@ body {
     right: 30px;
 }
 
+#loginBtn:hover {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
 #registerBtn {
     background-color: rgb(202, 75, 96);
     color: white;
@@ -51,14 +55,27 @@ body {
     right: 100px;
 }
 
+#registerBtn:hover {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
 #deleteInitiativeBtn{
+    cursor: pointer;
     background-color: rgb(202, 75, 96);
     color: white;
     font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+
+#deleteInitiativeBtn:hover {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
 #addInitiativeBtn{
     background-color: rgb(202, 75, 96);
     color: white;
     font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+
+#addInitiativeBtn:hover {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
