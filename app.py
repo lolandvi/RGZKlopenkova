@@ -1,4 +1,4 @@
-from flask import Blueprint, Flask, render_template, redirect, request, url_for, jsonify
+from flask import Blueprint, Flask, render_template, redirect, request, url_for, jsonify, session
 from flask_bcrypt import Bcrypt
 
 app = Flask(__name__)
@@ -8,9 +8,26 @@ bcrypt = Bcrypt(app)
 usernames = []
 password_hashes = []
 
+# Список для хранения инициатив
+initiatives = []
+
 @app.route("/mainpage")
 def mainpage():
     return render_template('mainpage.html')
+
+@app.route('/initiatives', methods=['GET'])
+def get_initiatives():
+    # Возвращает список инициатив в формате JSON
+    return jsonify(initiatives)
+
+@app.route('/initiatives/delete', methods=['DELETE'])
+def delete_last_initiative():
+    # Удаление последней инициативы
+    if initiatives:
+        deleted_initiative = initiatives.pop()
+        return jsonify({"success": True, "message": "Инициатива успешно удалена", "deleted_initiative": deleted_initiative})
+    else:
+        return jsonify({"success": False, "message": "Нет доступных инициатив для удаления"})
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
@@ -21,6 +38,8 @@ def login():
 
         # Проверка логина и пароля пользователя
         if username in usernames and bcrypt.check_password_hash(password_hashes[usernames.index(username)], password):
+            # Успешная аутентификация, сохраняем информацию о пользователе в сессии
+            session['username'] = username
             return redirect(url_for('mainpage'))
         else:
             error_message = "Аккаунт не найден. Перепроверьте корректность данных или создайте аккаунт"
