@@ -11,6 +11,8 @@
         <h1>Вход в аккаунт</h1>
     </header>
 
+    <p id="error-message" style="color: red;"></p>
+
     <form id="loginForm">
         <label for="username">Имя пользователя:</label>
         <input type="text" id="username" name="username" required>
@@ -21,10 +23,49 @@
         <button type="submit">Войти</button>
     </form>
 
+    {% if error_message %}
+    <p>{{ error_message }}</p>
+    {% endif %}
+
     <p>У вас нет учетной записи? <a href="{{ url_for('register') }}">Зарегистрироваться</a></p>
 
     <footer>
         &copy; Клопенкова Виктория, ФБИ-11, 3 курс, 2023
     </footer>
+
+    <script>
+        // Обработчик события отправки формы
+        document.getElementById('loginForm').addEventListener('submit', async function(event) {
+            event.preventDefault(); // Предотвратить стандартное поведение отправки формы
+
+            // Получение данных из формы
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+
+            try {
+                // Отправка запроса на сервер для проверки учетных данных
+                const response = await fetch('/check_login', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ username, password })
+                });
+
+                const data = await response.json();
+
+                if (data.success) {
+                    // Обработка успешного входа
+                    window.location.href = '/mainpage';
+                } else {
+                    // Обработка неудачного входа
+                    document.getElementById('error-message').innerText = "Аккаунт не найден. Перепроверьте корректность данных или создайте аккаунт";;
+                }
+            } catch (error) {
+                console.error('Ошибка при отправке запроса:', error);
+            }
+        });
+    </script>
+
 </body>
 </html>

@@ -13,6 +13,8 @@
     <!-- Инициативы будут добавляться сюда динамически с помощью JavaScript -->
   </ul>
 
+  <button id="loginBtn">Войти</button>
+  <button id="registerBtn">Зарегистрироваться</button>
   <button id="loadMoreBtn">Ещё</button>
 
   <script>
@@ -86,6 +88,12 @@
     loginBtn.addEventListener('click', function() {
             // Перенаправить пользователя на страницу входа
             window.location.href = '/login';
+        });
+    
+    // Обработчик клика по кнопке "Зарегистрироваться"
+    registerBtn.addEventListener('click', function() {
+            // Перенаправить пользователя на страницу регистрации
+            window.location.href = '/register';
         });
 
     // Загрузить первые 20 инициатив при загрузке страницы
