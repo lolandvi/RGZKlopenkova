@@ -1,4 +1,4 @@
-from flask import Blueprint, Flask, render_template, redirect, request, url_for, jsonify, session
+from flask import Flask, render_template, redirect, request, url_for, jsonify, session
 from flask_bcrypt import Bcrypt
 
 app = Flask(__name__)
@@ -11,9 +11,11 @@ password_hashes = []
 # Список для хранения инициатив
 initiatives = []
 
-@app.route("/mainpage")
+@app.route("/")
 def mainpage():
     return render_template('mainpage.html')
+
+
 
 @app.route('/initiatives', methods=['GET'])
 def get_initiatives():
